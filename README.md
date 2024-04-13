@@ -23,3 +23,5 @@ Then you can now run all the app.
 
 NOTE: Temporaly use root user
 
+If you want you can run pnpm prisma:studio for GUI app for DB management
+
