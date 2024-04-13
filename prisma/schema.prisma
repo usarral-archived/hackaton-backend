@@ -12,7 +12,11 @@ model Users {
   id        Int       @id
   Nombre    String?   @db.VarChar(255)
   Activo    Int?      @default(1)
-  rol       Int?
+  rol       Int?      
   fAlta     DateTime? @db.Timestamp(0)
   jwt_token String?   @db.VarChar(255)
+}
+model Roles {
+  id   Int    @id
+  name String @db.VarChar(255)
 }
