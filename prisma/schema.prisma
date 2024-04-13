@@ -10,9 +10,9 @@ datasource db {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model Users {
   id        Int       @id
-  Nombre    String?   @db.VarChar2(255)
+  Nombre    String?   @db.VarChar(255)
   Activo    Int?      @default(1)
   rol       Int?
   fAlta     DateTime? @db.Timestamp(0)
-  jwt_token String?   @db.VarChar2(255)
+  jwt_token String?   @db.VarChar(255)
 }
