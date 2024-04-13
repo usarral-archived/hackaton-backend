@@ -5,10 +5,12 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch --import tsx src/server.ts ",
+    "dev": "node --watch --env-file ./.env --import tsx src/server.ts ",
     "build": "tsc",
     "lint": "ts-standard",
-    "lint:fix": "ts-standard --fix"
+    "lint:fix": "ts-standard --fix",
+    "prisma:migrate": "pnpx prisma migrate dev",
+    "prisma:studio": "pnpx prisma studio"
   },
   "keywords": [],
   "author": "",
@@ -24,8 +26,10 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@prisma/client": "5.12.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "prisma": "^5.12.1"
   }
 }

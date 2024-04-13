@@ -14,10 +14,27 @@
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pnpm i"
+	"postCreateCommand": "pnpm i",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"emeraldwalk.RunOnSave",
+				"Prisma.prisma"
+			],
+			"settings": {
+				"emeraldwalk.runonsave": {
+					"commands": [
+						{
+							"match": ".*\\.ts$",
+							"cmd": "pnpm run lint:fix"
+						}
+					]
+				}
+			}
+		}	
+	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
