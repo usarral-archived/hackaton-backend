@@ -1,10 +1,13 @@
-import ExpressConfig from "./config/express.config.js"
 
-const app = ExpressConfig()
-const PORT = process.env.PORT || 3000
+import express from 'express'
 
-app.get('/', (_req, res) => {
-    res.send('Hi, The API is working!');
+const app = express()
+
+app.use('/', (_req, res) => {
+    res.status(200).send('Hello World')
+})
+const { SERVER_PORT: port = 5010 } = process.env;
+
+app.listen({ port }, () => {
+    console.log(`🚀 Server ready at http://0.0.0.0:${port}`);
 });
-
-app.listen(PORT, () => console.log("\n Server Running on Port " + PORT))
