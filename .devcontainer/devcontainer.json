@@ -20,7 +20,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"emeraldwalk.RunOnSave"
+				"emeraldwalk.RunOnSave",
+				"Prisma.prisma"
 			],
 			"settings": {
 				"emeraldwalk.runonsave": {
