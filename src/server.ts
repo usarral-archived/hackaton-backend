@@ -1,13 +1,6 @@
+import app from './config/express.config.js'
+import { BACKEND_PORT } from './config/env.config.js'
 
-import express from 'express'
-
-const app = express()
-
-app.use('/', (_req, res) => {
-    res.status(200).send('Hello World')
+app.listen(BACKEND_PORT, () => {
+    console.log(`🚀 Server is running on port ${BACKEND_PORT}`)
 })
-const { SERVER_PORT: port = 5010 } = process.env;
-
-app.listen({ port }, () => {
-    console.log(`🚀 Server ready at http://0.0.0.0:${port}`);
-});
