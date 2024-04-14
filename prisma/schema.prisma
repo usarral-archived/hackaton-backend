@@ -1,22 +1,63 @@
+// Configuración del generador de cliente Prisma
 generator client {
   provider = "prisma-client-js"
 }
 
+// Configuración de la fuente de datos
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model Users {
-  id        Int       @id
-  Nombre    String?   @db.VarChar(255)
-  Activo    Int?      @default(1)
-  rol       Int?      
-  fAlta     DateTime? @db.Timestamp(0)
-  jwt_token String?   @db.VarChar(255)
+//Un usuario puede tener varios roles.
+//Un rol puede tener varios usuarios.
+//Un rol puede tener varios permisos.
+//Un permiso puede estar asociado a varios roles.
+
+// Modelo de usuario
+model User {
+  id           Int        @id @default(autoincrement()) // ID único del usuario
+  name         String?    @db.VarChar(255) // Nombre del usuario
+  email        String?    @unique @db.VarChar(255) // Email del usuario
+  password     String?    @db.VarChar(255) // Contraseña del usuario encriptada
+  active       Int?       @default(1) // Estado del usuario, 1 para activo, 0 para inactivo
+  roles        UserRole[] // Roles asociados al usuario
+  creationDate DateTime?  @default(now()) @db.Timestamp(0) // Fecha de creación del usuario
+  jwt_token    String?    @db.VarChar(255) // Token JWT para autenticación
 }
-model Roles {
-  id   Int    @id
-  name String @db.VarChar(255)
+
+// Modelo de relación entre usuarios y roles
+model UserRole {
+  userId Int // ID del usuario
+  roleId Int // ID del rol
+  user   User @relation(fields: [userId], references: [id]) // Referencia al usuario
+  role   Role @relation(fields: [roleId], references: [id]) // Referencia al rol
+
+  @@id([userId, roleId]) // Clave primaria compuesta por userId y roleId
+}
+
+// Modelo de rol
+model Role {
+  id          Int              @id @default(autoincrement()) // ID único del rol
+  name        String           @unique @db.VarChar(255) // Nombre del rol
+  description String?          @db.Text // Descripción del rol
+  permissions RolePermission[] // Permisos asociados al rol
+  users       UserRole[] // Usuarios asociados al rol
+}
+
+// Modelo de relación entre roles y permisos
+model RolePermission {
+  roleId       Int // ID del rol
+  permissionId Int // ID del permiso
+  role         Role       @relation(fields: [roleId], references: [id]) // Referencia al rol
+  permission   Permission @relation(fields: [permissionId], references: [id]) // Referencia al permiso
+
+  @@id([roleId, permissionId]) // Clave primaria compuesta por roleId y permissionId
+}
+
+model Permission {
+  id          Int              @id @default(autoincrement()) // ID único del permiso
+  name        String           @unique @db.VarChar(255) // Nombre del permiso
+  description String?          @db.Text // Descripción del permiso
+  roles       RolePermission[] // Roles asociados al permiso
 }
