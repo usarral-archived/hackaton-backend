@@ -3,14 +3,14 @@ import { withPrisma } from 'helpers/queryDB.js'
 
 export const getUsers = async (_req: Request, _res: Response) => {
   withPrisma(async (prisma) => {
-    const users = await prisma.users.findMany()
+    const users = await prisma.user.findMany()
     _res.status(200).json(users)
   })
 }
 export const getUser = async (_req: Request, _res: Response) => {
   const { id } = _req.params
   withPrisma(async (prisma) => {
-    const user = await prisma.users.findUnique({
+    const user = await prisma.user.findUnique({
       where: { id: parseInt(id) }
     })
     if (user == null) {
