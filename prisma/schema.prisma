@@ -9,14 +9,22 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model Users {
-  id        Int       @id
-  Nombre    String?   @db.VarChar(255)
+  id        Int       @id @default(autoincrement())
+  Nombre    String?   @db.VarChar(255) 
   Activo    Int?      @default(1)
-  rol       Int?      
+  rol       Roles     @relation(fields: [RolId], references: [id])
+  RolId     Int
   fAlta     DateTime? @db.Timestamp(0)
   jwt_token String?   @db.VarChar(255)
 }
 model Roles {
   id   Int    @id
   name String @db.VarChar(255)
+  permissions Permissions[]
+  Users Users[]
+}
+model Permissions {
+  id   Int    @id
+  name String @db.VarChar(255)
+  Roles Roles[]
 }
