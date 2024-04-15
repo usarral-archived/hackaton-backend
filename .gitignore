@@ -2,3 +2,4 @@ node_modules/*
 *-lock.*
 .pnpm-store
 .env
+prisma/migrations
