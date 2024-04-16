@@ -31,12 +31,29 @@ export const getUser = async (_req: Request, _res: Response) => {
     }
   })
 }
+
+const checkNullFields = (fields: any) => {
+  for (const field in fields) {
+    if (fields[field] == null) {
+      return true
+    }
+  }
+  return false
+}
 export const createUser = async (_req: Request, _res: Response) => {
   const { name, email, password } = _req.body
+  console.debug(_req.body)
+  for (const field of [name, email, password]) {
+    if (field == null) {
+      _res.status(400).json({ message: 'Missing required field ' + field })
+      return
+    }
+  }
   withPrisma(async (prisma) => {
     const user = await prisma.user.create({
       data: { name, email, password }
     })
+    console.debug('User created:', user)
     _res.status(201).json(user)
   })
 }
@@ -51,4 +68,16 @@ export const deleteUser = async (_req: Request, _res: Response) => {
     })
     _res.status(200).json(user)
   })
+}
+export const refreshToken = (_req: Request, _res: Response) => {
+  _res.status(200).json({ message: 'refreshToken' })
+}
+export const forgotPassword = (_req: Request, _res: Response) => {
+  _res.status(200).json({ message: 'forgotPassword' })
+}
+export const signin = (_req: Request, _res: Response) => {
+  _res.status(200).json({ message: 'signin' })
+}
+export const logout = (_req: Request, _res: Response) => {
+  _res.status(200).json({ message: 'logout' })
 }
