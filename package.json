@@ -9,8 +9,8 @@
     "build": "tsc",
     "lint": "ts-standard",
     "lint:fix": "ts-standard --fix",
-    "prisma:migrate": "pnpx prisma migrate dev",
-    "prisma:studio": "pnpx prisma studio",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
     "prisma:seed": "tsx prisma/seed.ts"
   },
   "keywords": [],

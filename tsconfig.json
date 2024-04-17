@@ -3,28 +3,28 @@
         "baseUrl": ".",
         "paths": {
             "@/*": [
-                ""
+                "*"
             ],
             "@config/*": [
                 "config/*"
             ],
             "@controllers/*": [
-                ""
+                "api/controller/*"
             ],
-            "@helpers/*": [
-                ""
+            "@utils/*": [
+                "api/utils/*"
             ],
             "@middlewares/*": [
-                ""
+                "api/middleware/*"
             ],
             "@routes/*": [
-                ""
+                "api/router/*"
             ],
             "@seeders/*": [
-                ""
+                "db/seeders/*"
             ],
             "@tests/*": [
-                ""
+            "api/tests/*"
             ],
         },
         "resolveJsonModule": true,

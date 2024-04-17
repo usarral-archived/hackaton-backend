@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { withPrisma } from 'helpers/queryDB.js'
+import { withPrisma } from '@utils/queryDB.js'
 
 export const getUsers = async (_req: Request, _res: Response) => {
   withPrisma(async (prisma) => {
