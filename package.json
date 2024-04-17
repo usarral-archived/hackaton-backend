@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch --env-file ./.env --import tsx src/server.ts ",
+    "dev": "node --watch --env-file ./.env --import tsx api/server.ts ",
     "build": "tsc",
     "lint": "ts-standard",
     "lint:fix": "ts-standard --fix",

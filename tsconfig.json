@@ -1,15 +1,31 @@
 {
     "compilerOptions": {
-        "baseUrl": "./src",
+        "baseUrl": ".",
         "paths": {
-            "@/*": ["*"],
-            "@config/*": ["config/*"],
-            "@controllers/*": ["controllers/*"],
-            "@helpers/*": ["helpers/*"],
-            "@middlewares/*":["middlewares/*"],
-            "@routes/*": ["routes/*"],
-            "@seeders/*": ["seeders/*"],
-            "@tests/*": ["tests/*"],
+            "@/*": [
+                ""
+            ],
+            "@config/*": [
+                "config/*"
+            ],
+            "@controllers/*": [
+                ""
+            ],
+            "@helpers/*": [
+                ""
+            ],
+            "@middlewares/*": [
+                ""
+            ],
+            "@routes/*": [
+                ""
+            ],
+            "@seeders/*": [
+                ""
+            ],
+            "@tests/*": [
+                ""
+            ],
         },
         "resolveJsonModule": true,
         "pretty": true,
@@ -45,10 +61,8 @@
         "typeRoots": [
             "./src/@types",
         ], /* Skip type checking all .d.ts files. */
-        
     },
     "exclude": [
         "node_modules"
     ],
-    
 }
